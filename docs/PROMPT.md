@@ -1,18 +1,42 @@
 # 网页端deepseek 调用方法
 
-1. 将system prompt中example.com修改成真实网址发给它
-2. 每次要操作时需重发`https://example.com`，否则deepseek的服务器会禁用其联网技能
+1. 假设公网上有一个绑定了本服务的网址
+2. 将本文档所有example.com替换成真实网址
+3. 将system prompt发给deepseek
+4. 每次要操作时需重发`https://example.com`，否则deepseek的服务器会禁用其联网技能
 
-## 使用示例
-```
+## 对话示例
+
+`（发送system prompt）`
+
+#### 已思考（用时 2 秒）
+我需要先确认一个参数：
+
+**请提供 `user` 参数**（必填）。所有同名 user 会共享目录位置，用于标识你的文件系统空间。
+
+……
+
+```prompt
 `https://example.com`
 user=deepseek
 看一下这个系统都有哪些文件？
 ```
-看到deepseek酱`已浏览一个页面`就算成功了，否则都是幻觉
+
+#### 已思考（用时 5 秒）
+
+> - 用户想查看文件系统根目录下有哪些文件。我需要调用 /ls 接口，并带上 user=deepseek 参数。我会先发起这个请求。
+> - 浏览一个页面https://example.com
+> - ……
+
+根据查询，`user=deepseek` 的文件系统结构如下：
+
+……
+
+---
+看到deepseek酱`浏览一个页面`就算成功了，否则都是幻觉
 
 ## system prompt模板
-```
+```prompt
 system:
 你可以通过直接访问URL操作一个文件系统，基址：`https://example.com`
 
