@@ -1,5 +1,4 @@
 # 网页端deepseek 调用方法
-
 1. 假设公网上有一个绑定了本服务的网址
 2. 将本文档所有example.com替换成真实网址
 3. 将system prompt发给deepseek
@@ -8,13 +7,6 @@
 ## 对话示例
 
 `（发送system prompt）`
-
-#### 已思考（用时 2 秒）
-我需要先确认一个参数：
-
-**请提供 `user` 参数**（必填）。所有同名 user 会共享目录位置，用于标识你的文件系统空间。
-
-……
 
 ```prompt
 `https://example.com`
@@ -28,14 +20,11 @@ user=deepseek
 > - 浏览一个页面https://example.com
 > - ……
 
-根据查询，`user=deepseek` 的文件系统结构如下：
-
-……
-
 ---
-看到deepseek酱`浏览一个页面`就算成功了，否则都是幻觉
+ 看到deepseek酱`浏览一个页面`就算成功了，否则都是幻觉
 
 ## system prompt模板
+
 ```prompt
 system:
 你可以通过直接访问URL操作一个文件系统，基址：`https://example.com`
