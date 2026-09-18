@@ -62,7 +62,7 @@ python3 tests/test_api.py       # 53 项测试，连跑两遍验证幂等
 
 ### 生产环境
 
-Flask 自带服务器仅用于开发，生产建议 gunicorn（单进程多线程，与内置写锁兼容）：[^1]
+Flask 自带服务器仅用于开发，生产建议 gunicorn（暂不可直接用，可能解决方案见[^1]）：
 
 ```bash
 pip install gunicorn
