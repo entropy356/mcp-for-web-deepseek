@@ -62,7 +62,7 @@ python3 tests/test_api.py       # 53 项测试，连跑两遍验证幂等
 
 ### 生产环境
 
-Flask 自带服务器仅用于开发，生产建议 gunicorn（单进程多线程，与内置写锁兼容）：
+Flask 自带服务器仅用于开发，生产建议 gunicorn（单进程多线程，与内置写锁兼容）：[^1]
 
 ```bash
 pip install gunicorn
@@ -87,3 +87,17 @@ gunicorn -w 1 --threads 4 -b 0.0.0.0:3000 app:app
 ## 安全
 
 **部署前必读 [docs/security.md](docs/security.md)**：本服务无任何认证，`user` 即身份，任何人可用任意用户名读写全部数据，仅适合可信私有环境。
+
+
+## 说明
+[^1]:
+```
+P0：按 README 推荐方式部署，必然 500。
+ init_db() 待在 if __name__ == "__main__" 里，
+而 README「生产环境」推荐的正是 gunicorn ... app:
+app——这条路径 __name__ 是 "app"，建表永不执行。
+干净目录下第一个请求就 no such table: state。
+更有意思的是它为什么没被发现：只要曾经 python3 app.py 跑过一次留下 data.db，
+gunicorn 就完全正常。作者的日常流程（先跑测试再换 gunicorn）刚好被自己的历史数据挡住了这个 bug。
+修复只要一行：把 init_db() 挪到模块顶层。
+```
