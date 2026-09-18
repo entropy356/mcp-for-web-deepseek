@@ -15,7 +15,7 @@ mcp-for-web-deepseek/
 ├── README.md
 ├── docs/
 │   ├── API.md        # 核心规格：目录模型、编码、接口定义、错误码
-│   ├── USAGE.md      # 使用文档：上手示例、编码速查、典型场景
+│   ├── USAGE.draft.md      # 使用文档：上手示例、编码速查、典型场景
 │   ├── PROMPT.md     # 可直接复制给 LLM 的 system prompt 模板
 │   └── security.md   # 安全妥协清单（部署前必读）
 ├── src/
